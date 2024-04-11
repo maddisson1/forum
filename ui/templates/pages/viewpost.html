@@ -1,0 +1,68 @@
+{{define "title"}}Post #{{.Post.ID}}{{end}}
+
+{{define "main"}}
+
+    <div class="blogpost">
+        <span class="post-username">{{.Post.Username}}</span>
+        <span class="post-date">{{humanDate .Post.Created}}</span>
+        <h2>{{.Post.Title}}</h2>
+        <p>{{.Post.Content}}</p>
+        
+        <div class="icon">
+            <form action="/post/view?id={{.Post.ID}}" method="POST">
+                <div class="like">
+                    <button name="reaction" class="like_button" value="1"></button>
+                    <span>{{.Post.Likes}}</span>
+                </div>
+                <div class="dislike">
+                    <button name="reaction" class="dislike_button" value="-1"></button>
+                    <span>{{.Post.Dislikes}}</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- comments container -->
+		<div class="comment_block">
+             <!-- create a new comment -->
+             <div class="create_new_comment">
+                <form action="/post/view?id={{.Post.ID}}" method="POST">
+                    <h1>Comments</h1>
+                    {{with .Form.FieldErrors.comment}}
+                        <label class='error'>{{.}}</label>
+                    {{end}}
+    
+                    <div class="input_comment">
+                        <input class="comment-input" type="text" name="comment" placeholder="Write a comment..">
+                        <input class="create-submit" type="submit" value="Publish comment">
+                    </div> 
+                </form>
+             </div>
+    
+    
+             <!-- new comment -->
+            <div class="new_comment">
+                {{range .Comments}}
+                <ul class="user_comment">
+                     <!-- the comment body -->
+                     
+                     <div class="comment_body">
+                        {{.Text}}
+                     </div>
+    
+                     <!-- comments toolbar -->
+                    <div class="comment_toolbar">
+                         <!-- inc. date and time -->
+                        <div class="comment_details">
+                             <ul>
+                                 <li><i class="fa fa-clock-o"></i>{{humanDate .Created}}</li>
+                                 <li><i class="fa fa-pencil"></i><span class="user">{{.Username}}</span></li>
+                             </ul>
+                        </div>
+                    </div>
+                </ul>
+                {{end}}
+            </div>    
+        </div>
+{{end}}

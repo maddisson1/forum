@@ -1,0 +1,25 @@
+{{define "title"}}Login{{end}}
+
+{{define "main"}}
+<div class="container">
+    <form action="" method="POST" id="form">
+        <h1>Login</h1>
+        <div class="input-group">
+            <label for="email-login">Email</label>
+            {{with .Form.FieldErrors.email}}
+                <label class='error'>{{.}}</label>
+            {{end}}
+            <input type="email" placeholder="Enter your email" name="email-login" id="email-login">
+        </div>
+
+        <div class="input-group">
+            <label for="password-login">Password</label>
+            {{with .Form.FieldErrors.password}}
+                <label class='error'>{{.}}</label>
+            {{end}}
+            <input type="password" placeholder="Enter your password" name="password-login" id="password-login">
+        </div>
+        <input type="submit" value="Log in" class="submit">
+    </form>
+</div>
+{{end}}

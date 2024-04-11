@@ -1,0 +1,45 @@
+{{define "title"}}Sign up{{end}}
+
+{{define "main"}}
+<div class="container">
+    <form action="" method="POST" id="form">
+        <h1>Register</h1>
+        <div class="input-group">
+            <label for="email-signup">Your email</label>
+            {{with .Form.FieldErrors.email}}
+                <label class='error'>{{.}}</label>
+            {{end}}
+            
+            <input type="email" placeholder="Enter your email" name="email-signup" id="email-signup">
+        </div>
+
+        <div class="input-group">
+            <label for="username-signup">Username</label>
+            {{with .Form.FieldErrors.name}}
+                <label class='error'>{{.}}</label>
+            {{end}}
+            
+            <input type="text" placeholder="Enter your username" name="username-signup" id="username-signup">
+        </div>
+
+        <div class="input-group">
+            <label for="password-signup">Password</label>
+            {{with .Form.FieldErrors.password}}
+                <label class='error'>{{.}}</label>
+            {{end}}
+           
+            <input type="password" placeholder="Enter your password" name="password-signup" id="password-signup">
+        </div>
+
+        <div class="input-group">
+            <label for="password-again">Confirm Password</label>
+            {{with .Form.FieldErrors.password}}
+                <label class='error'>{{.}}</label>
+            {{end}}
+            
+            <input type="password" placeholder="Enter your password again" name="password-again" id="password-again">
+        </div>
+        <input type="submit" value="Sign up" class="submit">
+    </form>
+</div>
+{{end}}

@@ -1,0 +1,80 @@
+{{define "title"}}Create post{{end}}
+
+{{define "main"}}
+<div class="container-create-post">
+<form action='/post/create' method='POST'>
+    <!-- title -->
+    <div class="row">
+        <div class="col-25">
+          <label for="title">Title</label>
+          {{with .Form.FieldErrors.title}}
+            <label class='error'>{{.}}</label>
+        {{end}}
+        </div>
+        <div class="col-75">
+          <input type="text" id="fname" name="title" placeholder="Your title.." value='{{.Form.Title}}'>
+        </div>
+      </div>
+      <!-- category -->
+
+      <div class="row">
+        <div class="col-25">
+          <label for="category">Category</label>
+        </div>
+        <div class="col-75">
+          <div id="category" name="category">
+            
+            <input type="checkbox" name="golang" value="Golang">
+            <label for="golang">Golang</label>
+
+            <input type="checkbox" name="python" value="Python">
+            <label for="python">Python</label>
+
+            <input type="checkbox" name="javascript" value="JavaScript">
+            <label for="javascript">JavaScript</label>
+
+            <input type="checkbox" name="ai" value="AI">
+            <label for="ai">AI</label>
+
+            <input type="checkbox" name="algorithms" value="Algorithms">
+            <label for="algorithms">Algorithms</label>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="row">
+        <div class="col-25">
+          <label for="content">Content</label>
+          {{with .Form.FieldErrors.content}}
+                <label class='error'>{{.}}</label>
+            {{end}}
+        </div>
+        <div class="col-75">
+          <textarea id="subject" name="content" placeholder="Write something.." style="height:200px">{{.Form.Content}}</textarea>
+        </div>
+      </div>
+      <div class="row">
+        <input class="create-submit" type="submit" value="Publish post">
+      </div>
+    </form>
+</div>
+{{end}}
+
+
+
+      
+      <div class="row">
+        <div class="col-25">
+          <label for="country">Country</label>
+        </div>
+        <div class="col-75">
+          <select id="country" name="country">
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+          </select>
+        </div>
+      </div>
+  

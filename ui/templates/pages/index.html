@@ -1,0 +1,42 @@
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+    <h2>Latest Posts</h2>
+    {{if .Posts}}
+        {{range .Posts}}
+        <div class="main-card">
+        <div class="card">
+            <div class="top">
+                <div class="user_details">
+                    <h3>{{.Username}}</h3>
+                </div>
+            </div>
+            <h4 class="message"><a href='/post/view?id={{.ID}}'>{{.Title}}</a></h4>
+            <h4 class="message">{{.Content}}</h4>
+            <div class="btns">
+                <div class="right">
+                    <h4>{{humanDate .Created}}</h4>
+                </div>
+            </div>
+            <!-- <div class="border"></div> -->
+            <div class="icon">
+                <form action="/{{.ID}}" method="POST">
+                    <div class="like">
+                        <button name="reaction" class="like_button" value="1"></button>
+                        <span>{{ .Likes}}</span>
+                    </div>
+                    <div class="dislike">
+                        <button name="reaction" class="dislike_button" value="-1"></button>
+                        <span>{{ .Dislikes}}</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        {{end}}
+    {{else}}
+        <p>There's nothing to see here... yet!</p>
+        
+    </div>
+    {{end}}
+{{end}}
